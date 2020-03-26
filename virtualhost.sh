@@ -34,7 +34,7 @@ if [ "$rootDir" == "" ]; then
 	rootDir=${domain}
 fi
 
-### If rootDir starts with '/', don't use /var/www/webapps as parent directories.
+### If rootDir starts with '/', then don't use /var/www/webapps as parent directories.
 if [[ "$rootDir" =~ ^/ ]]; then
 	userDir=''
 fi
@@ -53,12 +53,12 @@ if [ "$action" == 'create' ]
 		if ! [ -d "$rootDir" ]; then
 			### Create the directories
 			mkdir -p "$rootDir/$publicDir"
-			### Give permission to rootDir and publicDir
+			### Set permissions to rootDir and publicDir
 			chmod 755 "$rootDir" "$rootDir/$publicDir"
-			### write test file in the new domain dir
+			### write test file in the new domain public directory
 			if ! echo "<?php echo phpinfo(); ?>" > "$rootDir/$publicDir/info.php"
 			then
-				echo $"ERROR: Not able to write in file $rootDir/$publicDir/info.php. Please check permissions"
+				echo $"Error: Not able to write in file $rootDir/$publicDir/info.php. Please check permissions"
 				exit;
 			else
 				echo $"Added content to $rootDir/$publicDir/info.php"
@@ -86,7 +86,7 @@ if [ "$action" == 'create' ]
         CustomLog $rootDir/logs/access.log combined
     </VirtualHost>" > "$sitesAvailabledomain"
 		then
-			echo -e $"There is an ERROR creating VirtualHost file for $domain"
+			echo -e $"There is an error creating the VirtualHost file for $domain"
 			exit;
 		else
 			echo -e $"\nNew VirtualHost for $domain has been created.\n"
