@@ -105,7 +105,7 @@ if [ "$action" == 'create' ]
 		/etc/init.d/apache2 reload
 
 		### show the finished message
-		echo -e $"Done! \n The new VirtualHost has been created. \nThe website is at: http://$domain \nThe project directory is located at \"$rootDir\" \nThe public serving files are at \"$rootDir\"/\"$publicDir\""
+		echo -e $"Done! \n The new VirtualHost has been created. \nThe website is at: http://$domain \nThe project directory is located at \"$rootDir\" \nThe public serving files are at \"$rootDir\"/$publicDir"
 		exit;
 	else
 		### check whether domain already exists
